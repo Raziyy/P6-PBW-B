@@ -24,10 +24,6 @@ class KegiatanForm
                 ->displayFormat('d M Y')
                 ->required(),
 
-            TextInput::make('lokasi')
-                ->label('Lokasi')
-                ->maxLength(255),
-
             TextInput::make('ringkasan')
                 ->label('Ringkasan')
                 ->maxLength(255),
@@ -39,9 +35,11 @@ class KegiatanForm
             FileUpload::make('foto')
                 ->label('Foto')
                 ->image()
+                ->disk('public')            // ✅ sama dengan table
                 ->directory('kegiatan')
+                ->visibility('public')      // ✅ pastikan bisa diakses
                 ->downloadable()
-                ->imageEditor(),
+                ->imageEditor()
         ])->columns(2);
     }
 }

@@ -31,15 +31,16 @@ class KegiatansTable
                     ->date('d M Y')
                     ->sortable(),
 
-                TextColumn::make('lokasi')
-                    ->label('Lokasi')
-                    ->searchable()
-                    ->limit(30),
-
                 TextColumn::make('ringkasan')
                     ->label('Ringkasan')
                     ->limit(50)
                     ->toggleable(isToggledHiddenByDefault: true),
+
+                ImageColumn::make('foto')
+                    ->label('Foto')
+                    ->disk('public')            // ✅ sama dengan form
+                    ->square()
+                    ->size(60),
             ])
             ->defaultSort('tanggal', 'desc')
             ->filters([
